@@ -3,14 +3,14 @@
 from automaton import Automaton
 
 def main():
-    print('\n')
+    print('')
     input_string = '1+1'
 
     machine = Automaton()
 
     for i in input_string:
-        machine.transition(i)
-    result = machine.check()
-    print(result)
+        print(machine.transition(i), end=' ')
+    print('')
+    print(machine.check())
 
 main()

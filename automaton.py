@@ -8,16 +8,18 @@ class Automaton:
         self._accepting_states = ['q1','q5']
         self._stack = []
         self._current_state = self._start_state
-        self._nums = [0,1,2,3,4,5,6,7,8,9]
+        self._nums = ['0','1','2','3','4','5','6','7','8','9']
         self._alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         self._operators = ['+','-','*','/','%','^']
 
     def transition(self, character):
+        print(character + self._current_state)
         if self._current_state == 's':
             if (character in self._nums) or (character in self._alpha):
-                self._current_state == 'q1'
+                print('test')
+                self._current_state = 'q1'
             elif character == '(':
-                self._current_state == 'q2'
+                self._current_state = 'q2'
                 self._stack.append('P')
             elif character == '-':
                 self._current_state = 'q3'
@@ -25,7 +27,7 @@ class Automaton:
                 self._current_state = 'j'
         elif self._current_state == 'q1':
             if character in self._nums:
-                self._current_state == 'q1'
+                self._current_state = 'q1'
             elif character in self._operators:
                 self._current_state = 'q4'
             elif (character == ')') and (len(self._stack) > 0) and (self._stack[-1] == 'P'):
@@ -65,6 +67,8 @@ class Automaton:
                 self._stack.pop()
             else:
                 self._current_state = 'j'
+                
+        return self._current_state
 
     def check(self):
         if (self._current_state in self._accepting_states) and (len(self._stack) == 0):
