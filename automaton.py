@@ -53,7 +53,9 @@ class Automaton:
             else:
                 self._current_state = 'j'
         elif self._current_state == 'q4':
-            if character == '(':
+            if (character in self._nums) or (character in self._alpha):
+                self._current_state = 'q1'
+            elif character == '(':
                 self._current_state = 'q2'
                 self._stack.append('P')
             elif character == '-':

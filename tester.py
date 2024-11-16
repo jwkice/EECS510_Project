@@ -3,8 +3,8 @@
 from automaton import Automaton
 
 def main():
-    print('')
     input_string = '1+1'
+    print(input_string)
 
     machine = Automaton()
 
