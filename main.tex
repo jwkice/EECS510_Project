@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{EECS510 Arithmetic Language Automaton}
+\author{Jake Kice}
+\date{November 2024}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows.meta, calc}
+\tikzset{
+->, node distance=3cm,
+>={Latex[width=3mm,length=3mm]},
+every  edge/.append style={thick, scale=1.8},
+every state/.style={thick},
+every  node/.append style={scale=1.4},
+initial text=$ $, }
+
+\tikzstyle{accepting}=[path picture={%
+        \draw let
+                \p1 = (path picture bounding box.east),
+                \p2 = (path picture bounding box.center)
+                in
+                        (\p2) circle (\x1 - \x2 - 2pt); % adjust `2pt` here for clarity
+}]
+
+\begin{document}
+
+\maketitle
+
+%\section{Introduction}
+
+    \begin{tikzpicture}
+            \node[state,initial] (S) {$S$};
+            \node[state, accepting, below of=S] (1) {$q1$};
+            \node[state, right of=1] (2) {$q2$};
+            \node[state, right of=S] (3) {$q3$};
+            \node[state, below of=1] (4) {$q4$};
+            \node[state, accepting, right of=4] (5) {$q5$};
+
+            % Transitions from S
+            \draw (S) edge[bend right, left] node{$\#,\alpha$} (1);
+            \draw (S) edge[bend right, right] node{$(,\lambda->P$} (2);
+            \draw (S) edge[above] node{-} (3);
+
+            % Transitions from 1
+            \draw (1) edge[bend left, left] node{\#} (1);
+            \draw (1) edge[bend right, left] node{O} (4);
+            \draw (1) edge[bend right, right] node{$),P->\lambda$} (5);
+
+            % Transitions from 2
+            \draw (2) edge[above] node{$\#,\alpha$} (1);
+            \draw (2) edge[bend right, right] node{$(,\lambda->P$} (2);
+
+            % Transitions from 3
+            \draw (3) edge[bend right, right] node{$\#,\alpha$} (1);
+            \draw (3) edge[bend left, right] node{$(,\lambda->P$} (2);
+
+            % Transitions from 4
+            \draw (4) edge[right] node{$\#,\alpha$} (1);
+            \draw (4) edge[bend left, right] node{$(,\lambda->P$} (2);
+            \draw (4) edge[above] node{-} (3);
+
+            % Transitions from 5
+            \draw (5) edge[below] node{O} (4);
+            \draw (5) edge[bend right, right] node{$),P->\lambda$} (5);
+            
+
+             %\draw (S) edge[bend left, above] node{a,b} (O);
+             %\draw (O) edge[bend left, below] node{a,b} (S);
+     \end{tikzpicture}
+
+\end{document}
