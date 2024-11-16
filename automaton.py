@@ -12,11 +12,12 @@ class Automaton:
         self._alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         self._operators = ['+','-','*','/','%','^']
 
+    def get_current_state(self):
+        return self._current_state
+
     def transition(self, character):
-        print(character + self._current_state)
         if self._current_state == 's':
             if (character in self._nums) or (character in self._alpha):
-                print('test')
                 self._current_state = 'q1'
             elif character == '(':
                 self._current_state = 'q2'

@@ -9,8 +9,8 @@ def main():
     machine = Automaton()
 
     for i in input_string:
-        print(machine.transition(i), end=' ')
-    print('')
+        print(machine.get_current_state() + ", " + i + " -> ", end='')
+        print(machine.transition(i))
     print(machine.check())
 
 main()
