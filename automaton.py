@@ -2,7 +2,7 @@
 
 class Automaton:
     def __init__(self):
-        self._states = ['s','q1','q2','q3','q4','q5','j']
+        self._states = ['s','q1','q2','q3','q4','q5','q6','j']
         self._start_state = 's'
         self._jail_state = 'j'
         self._accepting_states = ['q1','q5']
@@ -23,13 +23,15 @@ class Automaton:
 
     def transition(self, character, state):
         if state == 's':
-            if (character in self._nums) or (character in self._alpha):
+            if character in self._nums:
                 return 'q1'
             elif character == '(':
                 self._stack.append('P')
                 return 'q2'
             elif character == '-':
                 return 'q3'
+            elif character in self._alpha:
+                return 'q6'
             else:
                 return 'j'
         elif state == 'q1':
@@ -43,32 +45,46 @@ class Automaton:
             else:
                 return 'j'
         elif state == 'q2':
-            if (character in self._nums) or (character in self._alpha):
+            if character in self._nums:
                 return 'q1'
             elif character == '(':
                 self._stack.append('P')
                 return 'q2'
+            elif character in self._alpha:
+                return 'q6'
             else:
                 return 'j'
         elif state == 'q3':
-            if (character in self._nums) or (character in self._alpha):
+            if character in self._nums:
                 return 'q1'
             elif character == '(':
                 self._stack.append('P')
                 return 'q2'
+            elif character in self._alpha:
+                return 'q6'
             else:
                 return 'j'
         elif state == 'q4':
-            if (character in self._nums) or (character in self._alpha):
+            if character in self._nums:
                 return 'q1'
             elif character == '(':
                 self._stack.append('P')
                 return 'q2'
             elif character == '-':
                 return 'q3'
+            elif character in self._alpha:
+                return 'q6'
             else:
                 return 'j'
         elif state == 'q5':
+            if character in self._operators:
+                return 'q4'
+            elif (character == ')') and (len(self._stack) > 0) and (self._stack[-1] == 'P'):
+                self._stack.pop()
+                return 'q5'
+            else:
+                return 'j'
+        elif state == 'q6':
             if character in self._operators:
                 return 'q4'
             elif (character == ')') and (len(self._stack) > 0) and (self._stack[-1] == 'P'):
