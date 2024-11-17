@@ -2,21 +2,31 @@
 
 from automaton import Automaton
 
-def test_string(string):
+def test_string(string, machine):
     print(string)
-    machine = Automaton()
+    state_sequence = []
+    state_sequence.append(machine.get_start_state())
     for i in string:
-        print(machine.get_current_state() + ", " + i + " -> ", end='')
-        print(machine.transition(i))
-    print(machine.check())
-    print('')
+        if (state_sequence[-1] == machine.get_jail_state()):
+            break
+        else:
+            state_sequence.append(machine.transition(i, state_sequence[-1]))
+    
+    if (machine.check(state_sequence[-1])):
+        print('Accepted')
+        for i in range(len(state_sequence)-1):
+            print(f'{state_sequence[i]}, {string[i]} -> {state_sequence[i+1]}')
+    else:
+        print('Rejected')
+        for i in range(len(state_sequence)-1):
+            print(f'{state_sequence[i]}, {string[i]} -> {state_sequence[i+1]}')
 
 def main():
     mode = input("Select mode - (f)ile or (u)ser:")
     if mode == 'f':
         input_file = open(input("Enter file name: "), 'r')
         for line in input_file:
-            test_string(line.strip())
+            test_string(line.strip(), Automaton())
     elif mode == 'u':
         continue_loop = True
         while continue_loop:
@@ -24,7 +34,7 @@ def main():
             if input_string == 'quit':
                 continue_loop = False
             else:
-                test_string(input_string)
+                test_string(input_string, Automaton())
     else:
         print("Invalid mode selection.")
 
