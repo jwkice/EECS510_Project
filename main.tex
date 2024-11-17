@@ -32,15 +32,17 @@ initial text=$ $, }
     \begin{tikzpicture}
             \node[state,initial] (S) {$S$};
             \node[state, accepting, below of=S] (1) {$q1$};
+            \node[state, accepting, left of=1] (6) {$q6$};
             \node[state, right of=1] (2) {$q2$};
             \node[state, right of=S] (3) {$q3$};
             \node[state, below of=1] (4) {$q4$};
             \node[state, accepting, right of=4] (5) {$q5$};
 
             % Transitions from S
-            \draw (S) edge[bend right, left] node{$\#,\alpha$} (1);
+            \draw (S) edge[bend right, left] node{$\#$} (1);
             \draw (S) edge[bend right, right] node{$(,\lambda->P$} (2);
             \draw (S) edge[above] node{-} (3);
+            \draw (S) edge[bend right, left] node{$\alpha$} (6);
 
             % Transitions from 1
             \draw (1) edge[bend left, left] node{\#} (1);
@@ -48,25 +50,29 @@ initial text=$ $, }
             \draw (1) edge[bend right, right] node{$),P->\lambda$} (5);
 
             % Transitions from 2
-            \draw (2) edge[above] node{$\#,\alpha$} (1);
+            \draw (2) edge[above] node{$\#$} (1);
             \draw (2) edge[bend right, right] node{$(,\lambda->P$} (2);
+            \draw (2) edge[bend right, above] node{$\alpha$} (6);
 
             % Transitions from 3
-            \draw (3) edge[bend right, right] node{$\#,\alpha$} (1);
+            \draw (3) edge[bend right, right] node{$\#$} (1);
             \draw (3) edge[bend left, right] node{$(,\lambda->P$} (2);
+            \draw (3) edge[bend right, below] node{$\alpha$} (6);
 
             % Transitions from 4
-            \draw (4) edge[right] node{$\#,\alpha$} (1);
+            \draw (4) edge[right] node{$\#$} (1);
             \draw (4) edge[bend left, right] node{$(,\lambda->P$} (2);
             \draw (4) edge[above] node{-} (3);
+            \draw (4) edge[bend left, left] node{$\alpha$} (6);
 
             % Transitions from 5
             \draw (5) edge[below] node{O} (4);
             \draw (5) edge[bend right, right] node{$),P->\lambda$} (5);
-            
 
-             %\draw (S) edge[bend left, above] node{a,b} (O);
-             %\draw (O) edge[bend left, below] node{a,b} (S);
+            % Transitions from 6
+            \draw (6) edge[left] node{O} (4);
+            \draw (6) edge[bend left, right] node{$),P->\lambda$} (5);
+            
      \end{tikzpicture}
 
 \end{document}
