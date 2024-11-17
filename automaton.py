@@ -81,6 +81,6 @@ class Automaton:
 
     def check(self, state):
         if (state in self._accepting_states) and (len(self._stack) == 0):
-            return True
+            return 'ACCEPTED'
         else:
-            return False
+            return 'REJECTED'

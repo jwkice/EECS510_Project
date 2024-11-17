@@ -3,7 +3,7 @@
 from automaton import Automaton
 
 def test_string(string, machine):
-    print(string)
+    print(f'\nInput string: {string}')
     state_sequence = []
     state_sequence.append(machine.get_start_state())
     for i in string:
@@ -12,14 +12,10 @@ def test_string(string, machine):
         else:
             state_sequence.append(machine.transition(i, state_sequence[-1]))
     
-    if (machine.check(state_sequence[-1])):
-        print('Accepted')
-        for i in range(len(state_sequence)-1):
-            print(f'{state_sequence[i]}, {string[i]} -> {state_sequence[i+1]}')
-    else:
-        print('Rejected')
-        for i in range(len(state_sequence)-1):
-            print(f'{state_sequence[i]}, {string[i]} -> {state_sequence[i+1]}')
+    print(f'Result: {machine.check(state_sequence[-1])}')
+    print('State sequence:')
+    for i in range(len(state_sequence)-1):
+        print(f'\t{state_sequence[i]}, {string[i]} -> {state_sequence[i+1]}')
 
 def main():
     mode = input("Select mode - (f)ile or (u)ser:")
