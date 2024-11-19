@@ -12,17 +12,27 @@ def test_string(string, machine):
         else:
             state_sequence.append(machine.transition(i, state_sequence[-1]))
     
-    print(f'Result: {machine.check(state_sequence[-1])}')
+    result = machine.check(state_sequence[-1])
+    print(f'Result: {result}')
     print('State sequence:')
     for i in range(len(state_sequence)-1):
         print(f'\t{state_sequence[i]}, {string[i]} -> {state_sequence[i+1]}')
+    return result
 
 def main():
     mode = input("Select mode - (f)ile or (u)ser:")
     if mode == 'f':
         input_file = open(input("Enter file name: "), 'r')
         for line in input_file:
-            test_string(line.strip(), Automaton())
+            line_list = line.split()
+            if len(line_list) >= 2:
+                if test_string(line_list[0], Automaton()) == line_list[1]:
+                    print('Test Result: Success')
+                else:
+                    print('Test Result: Failure')
+            else:
+                test_string(line_list[0], Automaton())
+                print('Test Result: Inconclusive: No expected result')
     elif mode == 'u':
         continue_loop = True
         while continue_loop:
