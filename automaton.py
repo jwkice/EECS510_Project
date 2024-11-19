@@ -110,8 +110,8 @@ class Automaton:
                 return 'q5'
             else:
                 return 'j'
-                
-        return state
+        else:
+            raise(RuntimeError("Current state not possible state."))
 
     def check(self, state):
         if (state in self._accepting_states) and (len(self._stack) == 0):
