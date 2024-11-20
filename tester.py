@@ -1,4 +1,37 @@
-#Automaton Tester
+#Tester
+'''
+Name: EECS 510 Formal Language Project Automaton Tester
+Author: Jacob Kice
+Date Created: 11/16/2024
+Date Modified: 11/20/2024
+Function test_string uses the provided machine to test the validity of
+    the given string. It maintains a list of states, in the order of
+    occurance. For each character in the string, test_string first
+    checks if the last state reached is a jail state. If so, the loop
+    breaks. If not, test_string calls the machine's transition function
+    for the current character and the last state, and appends the new
+    state returned by transition to the end of the list. Once the string
+    is processed, test_string checks if the string was accepted using
+    the machine's check function. Then, it prints out the acceptance 
+    result and the sequence of state transitions. Finally, test_string
+    returns the result to be used for comparison against the expected
+    result.
+Function main allows the user to specify what type of input mode,
+    file or user. File mode reads from inputs from a user 
+    specified file. User mode takes direct input from the user for
+    testing. Both modes call the test_string function on the string
+    to check its validity. File mode also checks the result of each
+    test case based on the expected results included in the test
+    file. In the expected format of the test file, each line in the
+    file is one test, which is treated as a whitespace seperated 
+    list. The first index of the list is assumed to be the test string
+    and the second index is assumed to be the expected result. Valid
+    expected results are 'ACCEPTED' and 'REJECTED'. If the second
+    index is not one of those options, the test will always be marked
+    as 'Failure' regardless of the machine output. If the second
+    index is not found, the result comparison is marked as Inconclusive.
+    Any indices after the second are simply ignored.
+'''
 
 from automaton import Automaton
 
