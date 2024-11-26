@@ -35,44 +35,49 @@ initial text=$ $, }
             \node[state, accepting, left of=1] (6) {$q6$};
             \node[state, right of=1] (2) {$q2$};
             \node[state, right of=S] (3) {$q3$};
-            \node[state, below of=1] (4) {$q4$};
-            \node[state, accepting, right of=4] (5) {$q5$};
+            \node[state, below of=2] (4) {$q4$};
+            \node[state, accepting, below of=6] (5) {$q5$};
 
             % Transitions from S
             \draw (S) edge[bend right, left] node{$\#$} (1);
-            \draw (S) edge[bend right, right] node{$(,\lambda->P$} (2);
-            \draw (S) edge[above] node{-} (3);
-            \draw (S) edge[bend right, left] node{$\alpha$} (6);
+            \draw (S) edge[bend right, right] node[pos=.4]{$(,\lambda\rightarrow P$} (2);
+            \draw (S) edge[bend left, above] node{\Huge -} (3);
+            \draw (S) edge[bend right, above left] node{$\alpha$} (6);
 
             % Transitions from 1
-            \draw (1) edge[bend left, left] node{\#} (1);
-            \draw (1) edge[bend right, left] node{O} (4);
-            \draw (1) edge[bend right, right] node{$),P->\lambda$} (5);
+            \draw (1) edge[loop left] node{\#} (1);
+            \draw (1) edge[bend right, left] node[pos=.1]{O} (4);
+            \draw (1) edge[bend right, right] node[pos=.9]{$),P\rightarrow\lambda$} (5);
 
             % Transitions from 2
-            \draw (2) edge[above] node{$\#$} (1);
-            \draw (2) edge[bend right, right] node{$(,\lambda->P$} (2);
-            \draw (2) edge[bend right, above] node{$\alpha$} (6);
+            \draw (2) edge[below] node{$\#$} (1);
+            \draw (2) edge[loop right, above] node[pos=.3]{$(,\lambda\rightarrow P$} (2);
+            \draw (2) edge[bend right, above] node[pos=.1]{$\alpha$} (6);
 
             % Transitions from 3
-            \draw (3) edge[bend right, right] node{$\#$} (1);
-            \draw (3) edge[bend left, right] node{$(,\lambda->P$} (2);
-            \draw (3) edge[bend right, below] node{$\alpha$} (6);
+            \draw (3) edge[bend right, left] node[pos=.3]{$\#$} (1);
+            \draw (3) edge[left] node[pos=.3]{$(,\lambda\rightarrow P$} (2);
+            \draw (3) edge[bend right, distance=40, above] node[pos=.2]{$\alpha$} (6);
 
             % Transitions from 4
-            \draw (4) edge[right] node{$\#$} (1);
-            \draw (4) edge[bend left, right] node{$(,\lambda->P$} (2);
-            \draw (4) edge[above] node{-} (3);
-            \draw (4) edge[bend left, left] node{$\alpha$} (6);
+            \draw (4) edge[right] node[pos=.3]{$\#$} (1);
+            \draw (4) edge[left] node[pos=.8]{$(,\lambda\rightarrow P$} (2);
+            \draw (4) edge[bend right, distance=100, right] node[pos=.5]{\Huge -} (3);
+            \draw (4) edge[bend left, distance=20, below] node{$\alpha$} (6);
 
             % Transitions from 5
-            \draw (5) edge[below] node{O} (4);
-            \draw (5) edge[bend right, right] node{$),P->\lambda$} (5);
+            \draw (5) edge[bend right, distance=50, below] node{O} (4);
+            \draw (5) edge[loop below] node{$),P\rightarrow\lambda$} (5);
 
             % Transitions from 6
-            \draw (6) edge[left] node{O} (4);
-            \draw (6) edge[bend left, right] node{$),P->\lambda$} (5);
+            \draw (6) edge[above] node[pos=.1]{O} (4);
+            \draw (6) edge[bend right, left] node{$),P\rightarrow\lambda$} (5);
             
      \end{tikzpicture}
 
+    $\alpha=\{a,b,...z\}$ \newline
+    $\#=\{0,1,...9\}$ \newline
+    $O=\{+,-,*,/,\%,\wedge\}$ \newline
+    Note: all transitions other than left paren and right paren are stack agnostic (they ignore the stack). As such, all transitions in the diagram that do not show stack interaction can be considered as $s, \lambda \rightarrow \lambda$, where s is the input symbol.
+    
 \end{document}

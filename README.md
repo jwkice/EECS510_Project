@@ -3,7 +3,7 @@
 Execution:
 	Ensure 'tester.py' and 'automaton.py' files are within the same directory.
 	If using a test file, ensure it is also within the directory.
-	Run with you favorite Python3 interperter. Note: this code was developed in Python 3.9.
+	Run with your favorite Python3 interperter. Note: this code was developed in Python 3.9.
 	The code has been verified to run on the EECS cycle servers.
 	To run on the cycle servers, use command "python3 tester.py".
 
