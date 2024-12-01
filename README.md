@@ -6,6 +6,9 @@ Execution:
 	Run with your favorite Python3 interperter. Note: this code was developed in Python 3.9.
 	The code has been verified to run on the EECS cycle servers.
 	To run on the cycle servers, use command "python3 tester.py".
+	To run in file mode, enter 'f' when prompted, then enter name of test file.
+	To run in user mode, enter 'u' when prompted, then enter test strings one at a time,
+	when prompted. To end user mode, enter 'quit'.
 
 Test file:
 	When using a test file, the user provides the filename to the program.
