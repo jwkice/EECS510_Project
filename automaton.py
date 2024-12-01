@@ -27,7 +27,7 @@ class Automaton:
         self._states = ['s','q1','q2','q3','q4','q5','q6','j']
         self._start_state = 's'
         self._jail_state = 'j'
-        self._accepting_states = ['q1','q5']
+        self._accepting_states = ['q1','q5','q6']
         self._stack = []
         self._nums = ['0','1','2','3','4','5','6','7','8','9']
         self._alpha = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
