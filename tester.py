@@ -55,17 +55,26 @@ def test_string(string, machine):
 def main():
     mode = input("Select mode - (f)ile or (u)ser:")
     if mode == 'f':
+        success = 0
+        failure = 0
+        inconclusive = 0
         input_file = open(input("Enter file name: "), 'r')
         for line in input_file:
             line_list = line.split()
             if len(line_list) >= 2:
                 if test_string(line_list[0], Automaton()) == line_list[1]:
                     print('Test Result: Success')
+                    success += 1
                 else:
                     print('Test Result: Failure')
+                    failure += 1
             else:
                 test_string(line_list[0], Automaton())
                 print('Test Result: Inconclusive: No expected result')
+                inconclusive += 1
+        print(f'\n\nStatistics:')
+        print(f'\tSuccesses: {success}; Failures: {failure}; Inconclusive: {inconclusive}')
+        print(f'Total: {success+failure+inconclusive}; Success rate: {success/(success+failure+inconclusive)}')
     elif mode == 'u':
         continue_loop = True
         while continue_loop:
