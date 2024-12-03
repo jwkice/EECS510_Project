@@ -3,7 +3,7 @@
 Name: EECS 510 Formal Language Project Automaton Tester
 Author: Jacob Kice
 Date Created: 11/16/2024
-Date Modified: 11/20/2024
+Date Modified: 12/01/2024
 Function test_string uses the provided machine to test the validity of
     the given string. It maintains a list of states, in the order of
     occurance. For each character in the string, test_string first

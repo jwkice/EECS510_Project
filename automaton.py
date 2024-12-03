@@ -3,7 +3,7 @@
 Name: EECS 510 Formal Language Project Automaton - Arithmetic Language
 Author: Jacob Kice
 Date Created: 11/16/2024
-Date Modified: 11/19/2024
+Date Modified: 12/01/2024
 Function __init__ defines the state details: a list of all states, the start state,
     the jail state, and the accepting states. It also initializes the stack and
     defines the three character sets: numeral, alphabetic, and operator.
